@@ -2,29 +2,42 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.Windows.Speech;
 
+#if !UNITY_WEBGL
+using UnityEngine.Windows.Speech;
+#endif
 
 public class CarVoiceSensorController : MonoBehaviour
 {
     public List<VoiceCommandModel> voiceCommandModels = new List<VoiceCommandModel>();
+    
+#if !UNITY_WEBGL
     private KeywordRecognizer recognizer;
+#endif
 
     private CarManager _carManager;
 
     private void Start()
     {
         _carManager = GetComponentInParent<CarManager>();
-        recognizer = new KeywordRecognizer(voiceCommandModels.Select(v => v.voiceTrigger).ToArray());
-        recognizer.OnPhraseRecognized += Recognizer_OnPhraseRecognized;
-        recognizer.Start();
+
+        // Check if voice recognition is enabled and the platform is not WebGL
+        #if !UNITY_WEBGL
+            recognizer = new KeywordRecognizer(voiceCommandModels.Select(v => v.voiceTrigger).ToArray());
+            recognizer.OnPhraseRecognized += Recognizer_OnPhraseRecognized;
+            recognizer.Start();
+        #else
+            Debug.LogWarning("Voice recognition is not supported or disabled. Voice commands will not be available.");
+        #endif
     }
 
+    #if !UNITY_WEBGL
     private void Recognizer_OnPhraseRecognized(PhraseRecognizedEventArgs args)
     {
         string command = args.text;
         HandleVoiceCommand(command);
     }
+    #endif
 
     private void HandleVoiceCommand(string command)
     {
@@ -78,6 +91,9 @@ public class CarVoiceSensorController : MonoBehaviour
 
     void OnDestroy()
     {
-        recognizer.Stop();
+        #if !UNITY_WEBGL
+        if (recognizer != null)
+            recognizer.Stop();
+        #endif
     }
 }
