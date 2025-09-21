@@ -1,3 +1,7 @@
+Playable Builds – Accessible via itch.io (web and Windows versions).
+
+https://arjan-beka.itch.io/traffic-simulation-and-sensor-implementation
+
 Project Description
 This initiative aimed to develop a comprehensive traffic simulation system with integrated sensor technologies, delivering a highly realistic driving experience. The core objective was to create an immersive, educational, and interactive environment where users can explore, test, and learn about sensor systems commonly used in autonomous vehicles.
 
@@ -66,10 +70,6 @@ arjan-beka.itch.io
 
 Source Code & Accessibility
 GitHub Repository – The full source code is publicly available for inspection and contribution.
-
-Playable Builds – Accessible via itch.io (web and Windows versions).
-
-https://arjan-beka.itch.io/traffic-simulation-and-sensor-implementation
 
 Conclusion
 This project showcases a sophisticated simulation of traffic and sensor technologies using Unity 3D and C#. It demonstrates the interplay of camera imaging, proximity detection, radar scanning, and voice interaction, offering a compelling example of how AI, sensing, and simulation converge in the automotive domain. It serves as an inspiring technical demonstration for developers, researchers, and students interested in the future of intelligent vehicle systems.
